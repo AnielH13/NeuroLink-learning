@@ -1,77 +1,129 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html><html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NeuroLink Learning</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0e0e0e;
+      color: #ffffff;
+      line-height: 1.6;
+      padding: 20px;
+    }
+    h1, h2, h3 {
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+    a {
+      color: #4ea8de;
+      text-decoration: none;
+    }
+    header {
+      text-align: center;
+      padding: 40px 0;
+    }
+    .btn {
+      background: #4ea8de;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      margin-top: 20px;
+      cursor: pointer;
+      display: inline-block;
+    }
+    section {
+      margin-bottom: 40px;
+    }
+    .features {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .feature-box {
+      background: #1f1f1f;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+    }
+    .modes {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .mode-btn {
+      background: #252525;
+      border: 1px solid #444;
+      color: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: left;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 60px;
+      font-size: 0.9em;
+      color: #999;
+    }
+    @media (min-width: 768px) {
+      .features, .modes {
+        flex-direction: row;
+      }
+    }
+  </style>
 </head>
 <body>
-
-<header class="section hero">
-  <div class="container">
+  <header>
     <h1>NeuroLink Learning</h1>
     <p>La educación que se adapta a tu mente.</p>
-    <a href="#cta" class="btn">Accede primero</a>
-  </div>
-</header>
-
-<section class="section about">
-  <div class="container">
+    <a href="#registro" class="btn">Accede primero</a>
+  </header>  <section>
     <h2>¿Qué es NeuroLink?</h2>
     <p>NeuroLink Learning combina inteligencia artificial, neurociencia y personalización avanzada para ayudarte a aprender más rápido, retener mejor y adaptarse a tu estilo cognitivo.</p>
-  </div>
-</section>
-
-<section class="section modules">
-  <div class="container">
+  </section>  <section>
     <h2>Elige tu forma de aprender</h2>
-    <div class="grid-3">
-      <a class="module-card" href="#modulo-ia">🤖 <strong>IA Adaptativa</strong><p>Aprende con IA que ajusta el ritmo y la dificultad en tiempo real.</p></a>
-      <a class="module-card" href="#modulo-neuro">🧠 <strong>Neuro-entrenamiento</strong><p>Estimulación cognitiva con técnicas comprobadas.</p></a>
-      <a class="module-card" href="#modulo-game">🎮 <strong>Modo Juego</strong><p>Aprende compitiendo y desbloquea recompensas.</p></a>
+    <div class="modes">
+      <button class="mode-btn">🧠 IA Adaptativa<br><small>Aprende con IA en tiempo real</small></button>
+      <button class="mode-btn">🧬 Neuro-entrenamiento<br><small>Estimula tu rendimiento cognitivo</small></button>
+      <button class="mode-btn">🎮 Modo Juego<br><small>Aprende jugando, diviértete</small></button>
     </div>
-  </div>
-</section>
-
-<section class="section demo" id="modulo-ia">
-  <div class="container">
-    <h2>Módulo IA Adaptativa</h2>
-    <p>Haz clic en comenzar y NeuroLink ajustará el contenido según tu respuesta.</p>
-    <button class="btn" onclick="alert('💡 Pregunta 1: ¿Qué es la neuroplasticidad?')">Comenzar</button>
-  </div>
-</section>
-
-<section class="section testimonials">
-  <div class="container">
+  </section>  <section>
+    <h2>Ventajas</h2>
+    <div class="features">
+      <div class="feature-box">
+        <h3>📡 IA + Neurociencia</h3>
+        <p>Detectamos tu atención y adaptamos el ritmo en tiempo real.</p>
+      </div>
+      <div class="feature-box">
+        <h3>⚡ Resultados 10x</h3>
+        <p>Aprende más rápido, con menos frustración y mayor retención.</p>
+      </div>
+      <div class="feature-box">
+        <h3>🕒 Disponible 24/7</h3>
+        <p>Tu entrenador mental personal, siempre en tu bolsillo.</p>
+      </div>
+    </div>
+  </section>  <section>
     <h2>Testimonios</h2>
-    <div class="card"><p>“NeuroLink cambió la forma en que estudio. ¡Siento que tengo un coach mental personal!”</p><strong>— Carlos M.</strong></div>
-  </div>
-</section>
-
-<section class="section actions">
-  <div class="container grid-2">
-    <a class="btn" href="https://wa.me/50769390754">📲 Consultar con mentor</a>
-    <a class="btn" href="#modulo-ia">🚀 Probar un módulo</a>
-  </div>
-</section>
-
-<section class="section cta" id="cta">
-  <div class="container">
+    <blockquote>
+      “NeuroLink cambió la forma en que estudio. ¡Siento que tengo un coach mental personal!”
+      <br><strong>— Carlos M.</strong>
+    </blockquote>
+    <a href="#mentor">📞 Consultar con mentor</a> | <a href="#modulo">🚀 Probar un módulo</a>
+  </section>  <section id="registro">
     <h2>Únete a la revolución del aprendizaje</h2>
     <p>Regístrate para acceso anticipado y descubre cómo NeuroLink transformará tu forma de aprender.</p>
-    <a href="https://wa.me/50769390754?text=Hola%2C%20quiero%20acceso%20anticipado%20a%20NeuroLink%20Learning" class="btn">Solicitar acceso</a>
+    <a class="btn">Solicitar acceso</a>
+  </section>  <div class="footer">
+    &copy; 2025 NeuroLink Learning &mdash; Powered by Artificial Intelligence
   </div>
-</section>
-
-<footer>
-  <div class="container">
-    <p>© 2025 NeuroLink Learning — Powered by Artificial Intelligence</p>
-  </div>
-</footer>
-
-<a href="https://wa.me/50769390754?text=Hola%2C%20quiero%20saber%20más%20sobre%20NeuroLink%20Learning" class="whatsapp-float" target="_blank">💬</a>
-
 </body>
 </html>
