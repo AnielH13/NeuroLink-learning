@@ -1,131 +1,40 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html><html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NeuroLink Learning</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    body {
-      background: linear-gradient(145deg, #0a0a0a, #1a1a2e);
-      font-family: 'Segoe UI', sans-serif;
-      color: #ffffff;
-      margin: 0;
-      padding: 0;
-    }
-    h1 {
-      font-size: 2.5em;
-      text-align: center;
-      margin-top: 1.5em;
-      color: #00f9ff;
-      text-shadow: 0 0 10px #00f9ff;
-    }
-    h2 {
-      text-align: center;
-      color: #ddd;
-      margin-bottom: 1em;
-    }
-    section {
-      max-width: 900px;
-      margin: auto;
-      padding: 1.5em;
-      text-align: center;
-    }
-    .boton {
-      background-color: #00f9ff;
-      border: none;
-      color: #000;
-      padding: 0.75em 2em;
-      margin: 0.5em;
-      font-size: 1em;
-      border-radius: 30px;
-      box-shadow: 0 0 10px #00f9ff;
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-    .boton:hover {
-      background-color: #03eaff;
-      transform: scale(1.05);
-    }
-    .modulo {
-      background-color: #121212;
-      border-radius: 10px;
-      padding: 1em;
-      margin: 1em 0;
-      box-shadow: 0 0 10px rgba(0, 249, 255, 0.2);
-    }
-    footer {
-      text-align: center;
-      padding: 1em;
-      font-size: 0.9em;
-      color: #aaa;
-    }
-    .chatbot {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #1a1a2e;
-      border: 2px solid #00f9ff;
-      border-radius: 10px;
-      padding: 1em;
-      width: 250px;
-      max-height: 300px;
-      overflow-y: auto;
-      color: #fff;
-      font-size: 0.9em;
-      z-index: 999;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>NeuroLink Learning</h1>
-  <h2>La educación que se adapta a tu mente</h2>
-
-  <section>
-    <h3>¿Qué es NeuroLink?</h3>
-    <p>Inteligencia Artificial + Neurociencia para aprender 10x más rápido, con retención mejorada y sin frustración. Personalizado a tu estilo cognitivo.</p>
-  </section>
-
-  <section>
-    <div class="modulo">
-      <h4>IA Adaptativa</h4>
-      <p>Aprende según tu ritmo cerebral. NeuroLink ajusta el contenido a ti.</p>
+  <header class="header">
+    <h1>NeuroLink Learning</h1>
+    <p>La educación que se adapta a tu mente.</p>
+    <a href="#formulario" class="btn-primary">Accede primero</a>
+  </header>  <section class="features">
+    <div class="card" onclick="location.href='adaptativa.html'">
+      <h3>IA + Neurociencia</h3>
+      <p>Detectamos tu atención y adaptamos el ritmo en tiempo real.</p>
     </div>
-    <div class="modulo">
-      <h4>Neuro-entrenamiento</h4>
-      <p>Ejercita tu mente con técnicas basadas en neuroplasticidad.</p>
+    <div class="card" onclick="location.href='resultados.html'">
+      <h3>Resultados 10×</h3>
+      <p>Aprende más rápido, con menos frustración y mayor retención.</p>
     </div>
-    <div class="modulo">
-      <h4>Modo Juego</h4>
-      <p>Convierte el aprendizaje en una aventura interactiva y gamificada.</p>
+    <div class="card" onclick="location.href='disponible.html'">
+      <h3>Disponible 24/7</h3>
+      <p>Tu entrenador mental personal, siempre en tu bolsillo.</p>
     </div>
-  </section>
-
-  <section>
-    <h3>Testimonios</h3>
-    <p>"NeuroLink cambió mi forma de estudiar. Ahora tengo resultados y motivación!"</p>
-    <p>-- Carlos M.</p>
-  </section>
-
-  <section>
-    <button class="boton" onclick="window.location.href='https://wa.me/50766390754'">💬 WhatsApp</button>
-    <button class="boton" onclick="window.location.href='https://instagram.com/hoyoscompany'">📸 Instagram</button>
-    <button class="boton" onclick="alert('Redirigiendo al sistema de pago...')">🛒 Comprar ahora</button>
-  </section>
-
-  <div class="chatbot">
-    <strong>Asistente IA:</strong><br />
-    “Hola! Soy el bot de NeuroLink. Puedo ayudarte con:”
-    <ul>
-      <li>Información del programa</li>
-      <li>Planes y precios</li>
-      <li>Agendar una sesión</li>
-    </ul>
-    <em>(Esta demo estática simula funcionalidad)</em>
-  </div>
-
-  <footer>
-    &copy; 2025 NeuroLink Learning — Powered by Artificial Intelligence
+  </section>  <section class="cta" id="formulario">
+    <h2>Interfaz de Contacto</h2>
+    <form action="https://formspree.io/f/moqgzvoy" method="POST">
+      <input type="email" name="email" placeholder="Tu correo..." required>
+      <button type="submit" class="btn-primary">Solicitar acceso</button>
+    </form>
+    <br/>
+    <a href="https://wa.me/50766390754" class="btn-secondary">💬 WhatsApp</a>
+    <a href="https://instagram.com/hoyoscompany" class="btn-secondary">📸 Instagram</a>
+    <a href="https://buy.stripe.com/test_dummy" class="btn-secondary">🛒 Comprar ahora</a>
+  </section>  <footer>
+    <p>&copy; 2025 NeuroLink Learning &mdash; Powered by Artificial Intelligence</p>
   </footer>
 </body>
 </html>
