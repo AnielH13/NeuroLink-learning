@@ -1,4 +1,115 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: #0c0c0
+  background: #0c0c0c;
+  color: #f1f1f1;
+}
+
+.header {
+  text-align: center;
+  padding: 50px 20px;
+  background: linear-gradient(to right, #111, #0f2027);
+}
+
+.header h1 {
+  font-size: 2.8em;
+  margin-bottom: 10px;
+}
+
+.header p {
+  font-size: 1.2em;
+  color: #ccc;
+}
+
+.btn-primary {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 24px;
+  background: #00e6e6;
+  color: #000;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: #00bfbf;
+}
+
+.features {
+  display: flex;
+  justify-content: space-around;
+  padding: 40px 10px;
+  flex-wrap: wrap;
+  background: #141414;
+}
+
+.card {
+  background: #1c1c1c;
+  padding: 20px;
+  border-radius: 10px;
+  width: 280px;
+  margin: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  background: #242424;
+}
+
+.cta {
+  text-align: center;
+  padding: 50px 20px;
+  background: #111;
+}
+
+.cta h2 {
+  margin-bottom: 20px;
+}
+
+.cta form input,
+.cta form button {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 8px;
+  border: none;
+}
+
+.cta form input {
+  width: 60%;
+  max-width: 300px;
+}
+
+.cta form button {
+  background: #00e6e6;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  display: inline-block;
+  margin: 10px;
+  padding: 12px 20px;
+  background: #1f1f1f;
+  border: 1px solid #00e6e6;
+  color: #00e6e6;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: #00e6e6;
+  color: #000;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #0a0a0a;
+  color: #555;
+}
