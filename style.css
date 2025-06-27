@@ -113,3 +113,39 @@ footer {
   background: #0a0a0a;
   color: #555;
 }
+.productos {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.producto {
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 600px;
+  background-color: #111827;
+  color: white;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+.producto h3 {
+  margin-bottom: 10px;
+}
+
+.producto p {
+  margin-bottom: 15px;
+}
+
+.producto .btn-primary {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 6px;
+  background-color: #3b82f6;
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.producto .btn-primary:hover {
+  background-color: #2563eb;
+}
