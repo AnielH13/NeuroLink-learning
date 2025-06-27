@@ -1,0 +1,30 @@
+<!DOCTYPE html><html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sobre Nosotros | NeuroLink Learning</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="producto-page">
+  <header class="header">
+    <h1>¿Quiénes somos?</h1>
+    <p>Impulsamos el aprendizaje con Inteligencia Artificial y Neurociencia.</p>
+  </header>  <section class="plans">
+    <div class="plan-card">
+      <h2>Nuestra Misión</h2>
+      <p>Revolucionar la educación personalizada a través de la inteligencia artificial adaptativa y técnicas neurocientíficas.</p>
+    </div><div class="plan-card">
+  <h2>Visión</h2>
+  <p>Ser la plataforma número uno en aprendizaje inteligente, ayudando a millones de personas a lograr sus metas cognitivas y profesionales.</p>
+</div>
+
+<div class="plan-card">
+  <h2>¿Por qué NeuroLink?</h2>
+  <p>Porque combinamos la ciencia del cerebro, algoritmos adaptativos y entrenamiento mental constante para mejorar tus resultados.</p>
+</div>
+
+  </section>  <footer>
+    <p>&copy; 2025 Hoyos Company | Todos los derechos reservados.</p>
+  </footer>
+</body>
+</html>
