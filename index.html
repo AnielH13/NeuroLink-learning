@@ -26,9 +26,8 @@
     </div>
   </section>  <section class="cta" id="formulario">
     <h2>Interfaz de Contacto</h2>
-    <form action="https://formspree.io/f/xgvyreal" method="POST">
+    <form action="https://formspree.io/f/xgvyreal" method="POST" onsubmit="setTimeout(function(){ window.location.href='gracias.html'; }, 300);">
   <input type="email" name="email" placeholder="Tu correo..." required />
-  <input type="hidden" name="_redirect" value="https://neuro-link-learning.vercel.app/gracias.html" />
   <button type="submit" class="btn-primary">Solicitar acceso</button>
 </form>
     <br/>
