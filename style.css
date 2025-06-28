@@ -145,7 +145,17 @@ footer {
   text-decoration: none;
   transition: background-color 0.3s ease;
 }
-
 .producto .btn-primary:hover {
   background-color: #2563eb;
+}
+/* Estilo general para todos los enlaces */
+a {
+  color: #7dd3fc; /* Azul cielo claro */
+  text-decoration: none;
+}
+
+/* Estilo cuando se pasa el mouse sobre el enlace */
+a:hover {
+  color: #38bdf8; /* Azul un poco más brillante */
+  text-decoration: underline;
 }
