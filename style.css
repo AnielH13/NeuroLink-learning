@@ -178,3 +178,22 @@ a:hover {
   background-color: #5848e5;
   transform: translateY(-2px);
 }
+<style>
+  .boton-app {
+    display: inline-block;
+    padding: 14px 28px;
+    background: linear-gradient(135deg, #3f00ff, #8e2de2);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  }
+
+  .boton-app:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  }
+</style>
