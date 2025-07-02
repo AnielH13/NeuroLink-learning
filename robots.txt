@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://neuro-link-learning.vercel.app/sitemap.xml
