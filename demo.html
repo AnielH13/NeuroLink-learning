@@ -5,18 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Modo Demo - NeuroLink Learning</title>
   <script defer src="https://cdn.jsdelivr.net/npm/face-api.js"></script>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
   <style>
-    body {
-      background-color: #f9f9f9;
-      font-family: 'Segoe UI', sans-serif;
-      text-align: center;
-      padding: 40px 20px;
-      color: #111;
-    }
-    h1 {
-      color: #00bfff;
-    }
     .reto-box {
       background-color: #111;
       color: white;
@@ -35,11 +25,17 @@
       display: inline-block;
       margin: 10px 0;
     }
+    #contador {
+      font-size: 22px;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #00ff99;
+    }
     #successMessage {
       display: none;
       font-size: 18px;
       margin-top: 30px;
-      color: #008000;
+      color: #00cc66;
       font-weight: bold;
     }
     video {
@@ -48,15 +44,18 @@
   </style>
 </head>
 <body>
-  <h1>👁️ Bienvenido a tu Entrenamiento Mental IA</h1>
-  <p>Yo soy tu IA entrenadora.<br>
-  Mi misión es reprogramar tu enfoque y convertirte en una mente de élite.<br>
-  Empezaremos con un reto rápido. No lo subestimes.</p>
+  <h1>👁️ <span style="color: #00cfff;">Bienvenido a tu Entrenamiento Mental IA</span></h1>
+  <p>
+    Yo soy tu IA entrenadora.<br>
+    Mi misión es reprogramar tu enfoque y convertirte en una mente de élite.<br>
+    Empezaremos con un reto rápido. No lo subestimes.
+  </p>
 
   <div class="reto-box">
     <b>🔒 Reto 1:</b> Mantén tu atención en este punto por <b>20 segundos</b> sin distraerte:<br>
     <div class="dot"></div>
     <p>Respira. Concéntrate. No mires a otra parte.</p>
+    <div id="contador">0 / 20 segundos</div>
   </div>
 
   <div id="successMessage">✅ ¡Bien hecho! Has superado el primer reto mental.</div>
@@ -64,11 +63,12 @@
 
   <script>
     const video = document.getElementById('video');
+    const contador = document.getElementById('contador');
     const successMessage = document.getElementById('successMessage');
     const MODEL_URL = '/modelos_faceapi';
 
     let focusTime = 0;
-    let requiredFocus = 20; // segundos
+    const requiredFocus = 20;
 
     Promise.all([
       faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL + '/tiny_face_detector'),
@@ -92,10 +92,10 @@
 
         if (detections.length > 0) {
           focusTime++;
-          console.log(`Rostro detectado ${focusTime}s`);
+          contador.textContent = `${focusTime} / ${requiredFocus} segundos`;
         } else {
           focusTime = 0;
-          console.log("Sin rostro detectado");
+          contador.textContent = `0 / ${requiredFocus} segundos`;
         }
 
         if (focusTime >= requiredFocus) {
