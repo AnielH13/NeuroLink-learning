@@ -73,6 +73,7 @@
       color: #888;
     }
   </style>
+  <script defer src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.min.js"></script>
 </head>
 <body>
   <header>
@@ -96,5 +97,53 @@
   <footer>
     Modo Demo · NeuroLink Learning · Hoyos Company © 2025
   </footer>
+<script>
+  async function startCameraFocusTest() {
+    await faceapi.nets.tinyFaceDetector.loadFromUri('https://cdn.jsdelivr.net/npm/@vladmandic/face-api/model/');
+    await faceapi.nets.faceLandmark68TinyNet.loadFromUri('https://cdn.jsdelivr.net/npm/@vladmandic/face-api/model/');
+
+    const video = document.getElementById('video');
+    const statusText = document.getElementById('status');
+    const successBox = document.getElementById('success-box');
+    const unlockBtn = document.getElementById('unlock-btn');
+
+    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+    video.srcObject = stream;
+
+    video.onloadedmetadata = () => {
+      video.play();
+      let focusStart = null;
+
+      const checkFocus = async () => {
+        const result = await faceapi.detectSingleFace(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks(true);
+
+        if (result) {
+          const nose = result.landmarks.getNose()[0];
+          const xCenter = video.videoWidth / 2;
+
+          if (Math.abs(nose.x - xCenter) < 40) {
+            if (!focusStart) focusStart = Date.now();
+            const elapsed = (Date.now() - focusStart) / 1000;
+            statusText.textContent = `Enfoque: ${Math.floor(elapsed)}s`;
+
+            if (elapsed >= 20) {
+              successBox.style.display = 'block';
+              unlockBtn.style.display = 'inline-block';
+              statusText.textContent = "¡Nivel completado!";
+              return;
+            }
+          } else {
+            focusStart = null;
+            statusText.textContent = "Perdiste el enfoque. Vuelve a intentarlo.";
+          }
+        }
+        requestAnimationFrame(checkFocus);
+      };
+      checkFocus();
+    };
+  }
+
+  startCameraFocusTest();
+</script>
 </body>
 </html>
