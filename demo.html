@@ -5,35 +5,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Demo NeuroLink IA</title>
   <link rel="stylesheet" href="style.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/face-api.js"></script>
   <style>
     body {
+      background-color: #f9f9f9;
+      color: #000;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f7f7f7;
       text-align: center;
-      padding: 20px;
-      color: #111;
+      padding: 30px;
     }
 
     h1 {
-      font-size: 24px;
-      color: #00baff;
-      margin-bottom: 10px;
+      color: #00bfff;
     }
 
-    #reto {
-      background: #111;
-      color: white;
+    .reto {
+      background-color: #111;
+      color: #fff;
+      border-radius: 10px;
       padding: 20px;
-      border-radius: 12px;
-      display: inline-block;
-      margin-top: 20px;
+      max-width: 400px;
+      margin: 30px auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
     }
 
     #contador {
+      color: #00ff99;
       font-weight: bold;
-      color: #00cc66;
       margin-top: 10px;
+    }
+
+    #estado {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #999;
+    }
+
+    #nextLevel {
+      display: none;
+      margin-top: 20px;
+      background-color: #00bfff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
       font-size: 16px;
+      cursor: pointer;
     }
 
     video {
@@ -43,70 +60,70 @@
 </head>
 <body>
   <h1>👁️ Bienvenido a tu Entrenamiento Mental IA</h1>
-  <p>Yo soy tu IA entrenadora.<br>
-  Mi misión es reprogramar tu enfoque y convertirte en una mente de élite.<br>
-  Empezaremos con un reto rápido. No lo subestimes.</p>
+  <p>Yo soy tu IA entrenadora. Mi misión es reprogramar tu enfoque y convertirte en una mente de élite.</p>
 
-  <div id="reto">
+  <div class="reto">
     <p>🔒 <strong>Reto 1:</strong> Mantén tu atención en este punto por <strong>20 segundos</strong> sin distraerte:</p>
-    <div style="font-size: 32px; color: cyan;">•</div>
+    <div style="font-size:30px; margin: 10px;">•</div>
     <p>Respira. Concéntrate. No mires a otra parte.</p>
     <div id="contador">0 / 20 segundos</div>
+    <div id="estado">Esperando detección de rostro...</div>
+    <button id="nextLevel" onclick="alert('Nivel desbloqueado. ¡Continúa tu entrenamiento!')">🔓 Desbloquear siguiente nivel</button>
   </div>
 
-  <video id="video" width="300" height="200" autoplay muted></video>
+  <video id="video" autoplay muted></video>
+  <audio id="beep" src="https://assets.mixkit.co/sfx/preview/mixkit-positive-interface-beep-221.wav"></audio>
 
-  <script defer src="https://cdn.jsdelivr.net/npm/face-api.js"></script>
   <script>
     const video = document.getElementById('video');
     const contador = document.getElementById('contador');
+    const estado = document.getElementById('estado');
+    const nextLevel = document.getElementById('nextLevel');
+    const beep = document.getElementById('beep');
 
-    let segundosFijados = 0;
-    let enReto = false;
+    let tiempoConcentrado = 0;
+    let intervalo = null;
 
-    async function cargarModelos() {
-      const url = './modelos_faceapi';
+    async function start() {
+      await Promise.all([
+        faceapi.nets.tinyFaceDetector.loadFromUri('modelos_faceapi/tiny_face_detector'),
+        faceapi.nets.faceLandmark68Net.loadFromUri('modelos_faceapi/face_landmark_68')
+      ]);
 
-      await faceapi.nets.tinyFaceDetector.loadFromUri(url + '/tiny_face_detector');
-      await faceapi.nets.faceLandmark68Net.loadFromUri(url + '/face_landmark_68');
-    }
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      video.srcObject = stream;
 
-    async function iniciarVideo() {
-      try {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: {} });
-        video.srcObject = stream;
-      } catch (err) {
-        alert("No se pudo acceder a la cámara.");
-        console.error(err);
-      }
-    }
+      video.addEventListener('play', () => {
+        const canvas = faceapi.createCanvasFromMedia(video);
+        canvas.style.display = 'none';
+        document.body.append(canvas);
 
-    function comenzarReto() {
-      const intervalo = setInterval(async () => {
-        const detecciones = await faceapi.detectSingleFace(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks();
+        const displaySize = { width: video.width, height: video.height };
+        faceapi.matchDimensions(canvas, displaySize);
 
-        if (detecciones) {
-          segundosFijados++;
-          contador.textContent = `${segundosFijados} / 20 segundos`;
+        intervalo = setInterval(async () => {
+          const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions());
 
-          if (segundosFijados >= 20) {
-            clearInterval(intervalo);
-            contador.textContent = "✅ ¡Reto completado!";
-            contador.style.color = "gold";
-            alert("¡Bien hecho! Has demostrado concentración.");
+          if (detections.length > 0) {
+            beep.play();
+            estado.textContent = "✔️ Rostro detectado";
+            tiempoConcentrado++;
+            contador.textContent = `${tiempoConcentrado} / 20 segundos`;
+
+            if (tiempoConcentrado >= 20) {
+              clearInterval(intervalo);
+              estado.textContent = "✅ Reto completado. Excelente enfoque.";
+              nextLevel.style.display = 'inline-block';
+            }
+          } else {
+            estado.textContent = "❌ No se detecta rostro. Reajusta tu mirada.";
+            tiempoConcentrado = 0;
+            contador.textContent = `0 / 20 segundos`;
           }
-        } else {
-          segundosFijados = 0;
-          contador.textContent = `0 / 20 segundos`;
-        }
-      }, 1000);
+        }, 1000);
+      });
     }
 
-    window.addEventListener('DOMContentLoaded', async () => {
-      await cargarModelos();
-      await iniciarVideo();
-      comenzarReto();
-    });
+    start();
   </script>
 </body>
-</html>
