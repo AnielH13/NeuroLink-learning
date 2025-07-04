@@ -1,158 +1,79 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html><html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Modo Demo - NeuroLink Learning</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    body
-    <div style="text-align:center; padding:20px;">
-  <video id="video" width="320" height="240" autoplay muted style="border-radius: 10px;"></video>
-  <p id="status">Esperando rostro...</p>
-  <div id="success-box" style="display:none; margin-top:20px;">
-    <p><strong>¡Lo lograste! Tu enfoque es impresionante.</strong></p>
-    <a id="unlock-btn" href="producto1.html" class="btn">Ver Programa Completo</a>
-  </div>
-</div>
-    {
-      font-family: 'Poppins', sans-serif;
-      background-color: #0a0a0a;
-      color: #ffffff;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    header {
-      text-align: center;
-      padding: 40px 20px 20px;
-    }
-
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 10px;
-      color: #7fd6ff;
-    }
-
-    p {
-      font-size: 1rem;
-      max-width: 600px;
-      line-height: 1.6;
-    }
-
-    .demo-box {
-      background-color: #111827;
-      border-radius: 10px;
-      padding: 30px;
-      margin: 20px;
-      width: 90%;
-      max-width: 600px;
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
-    }
-
-    .challenge {
-      font-size: 1.2rem;
-      margin: 30px 0;
-      text-align: center;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 12px 24px;
-      margin: 10px;
-      background-color: #3c3cff;
-      color: white;
-      text-decoration: none;
-      border-radius: 30px;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-    }
-
-    .btn:hover {
-      background-color: #2a2ae0;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9rem;
-      color: #888;
-    }
-  </style>
-  <script defer src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.min.js"></script>
+  <title>Modo Demo | NeuroLink Learning</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="https://unpkg.com/face-api.js"></script>
 </head>
 <body>
-  <header>
-    <h1>👁 Bienvenido a tu Entrenamiento Mental IA</h1>
-    <p>Yo soy tu IA entrenadora. Mi misión es reprogramar tu enfoque y convertirte en una mente de élite. Empezaremos con un reto rápido. No lo subestimes.</p>
-  </header>
+  <main style="text-align: center; padding: 40px 20px;">
+    <h1>👁️ <span style="color: #61d3ff">Bienvenido a tu Entrenamiento Mental IA</span></h1>
+    <p style="font-size: 20px; margin: 20px auto; max-width: 600px;">
+      Yo soy tu IA entrenadora.<br />
+      Mi misión es reprogramar tu enfoque y convertirte en una mente de élite.<br />
+      Empezaremos con un reto rápido. No lo subestimes.
+    </p><div id="reto" style="background: #0a0e1a; color: white; padding: 30px; margin: 40px auto; border-radius: 10px; max-width: 500px;">
+  <p>🔒 <strong>Reto 1:</strong> Mantén tu atención en este punto por 20 segundos sin distraerte:</p>
+  <div id="dot" style="width: 15px; height: 15px; background-color: cyan; margin: 40px auto; border-radius: 50%;"></div>
+  <p>Respira. Concéntrate. No mires a otra parte.</p>
+</div>
 
-  <section class="demo-box">
-    <div class="challenge">
-      <p>🔒 Reto 1: Mantén tu atención en este punto por 20 segundos sin distraerte:</p>
-      <h2 style="font-size: 3rem; color: #00ffff;">•</h2>
-      <p style="font-size: 0.9rem;">Respira. Concéntrate. No mires a otra parte.</p>
-    </div>
-  </section>
+<div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 30px;">
+  <a href="producto.html" class="btn-secondary">💡 Ver Programa Completo</a>
+  <a href="https://ko-fi.com/anielhoyos" class="btn-secondary">⚡ Comprar Ahora</a>
+</div>
 
-  <div style="margin: 20px;">
-    <a href="producto1.html" class="btn">💡 Ver Programa Completo</a>
-    <a href="https://ko-fi.com/anielhoyos" class="btn" target="_blank">⚡ Comprar Ahora</a>
-  </div>
+<video id="video" width="320" height="240" autoplay muted playsinline style="display: none;"></video>
 
-  <footer>
-    Modo Demo · NeuroLink Learning · Hoyos Company © 2025
-  </footer>
-<script>
-  async function startCameraFocusTest() {
-    await faceapi.nets.tinyFaceDetector.loadFromUri('https://cdn.jsdelivr.net/npm/@vladmandic/face-api/model/');
-    await faceapi.nets.faceLandmark68TinyNet.loadFromUri('https://cdn.jsdelivr.net/npm/@vladmandic/face-api/model/');
+<p style="font-size: 14px; color: gray;">Modo Demo · NeuroLink Learning · Hoyos Company © 2025</p>
 
+  </main>  <script>
     const video = document.getElementById('video');
-    const statusText = document.getElementById('status');
-    const successBox = document.getElementById('success-box');
-    const unlockBtn = document.getElementById('unlock-btn');
+    const dot = document.getElementById('dot');
 
-    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-    video.srcObject = stream;
+    let focusedTime = 0;
+    let interval;
 
-    video.onloadedmetadata = () => {
-      video.play();
-      let focusStart = null;
+    async function startFaceTracking() {
+      await faceapi.nets.tinyFaceDetector.loadFromUri('https://cdn.jsdelivr.net/npm/face-api.js/models');
+      await faceapi.nets.faceLandmark68TinyNet.loadFromUri('https://cdn.jsdelivr.net/npm/face-api.js/models');
 
-      const checkFocus = async () => {
-        const result = await faceapi.detectSingleFace(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks(true);
+      navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
+        video.srcObject = stream;
+      });
 
-        if (result) {
-          const nose = result.landmarks.getNose()[0];
-          const xCenter = video.videoWidth / 2;
+      interval = setInterval(async () => {
+        const detection = await faceapi.detectSingleFace(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks(true);
 
-          if (Math.abs(nose.x - xCenter) < 40) {
-            if (!focusStart) focusStart = Date.now();
-            const elapsed = (Date.now() - focusStart) / 1000;
-            statusText.textContent = `Enfoque: ${Math.floor(elapsed)}s`;
+        if (detection && detection.landmarks) {
+          const leftEye = detection.landmarks.getLeftEye();
+          const rightEye = detection.landmarks.getRightEye();
 
-            if (elapsed >= 20) {
-              successBox.style.display = 'block';
-              unlockBtn.style.display = 'inline-block';
-              statusText.textContent = "¡Nivel completado!";
-              return;
-            }
+          const lookingCenter = checkFocus(leftEye, rightEye);
+
+          if (lookingCenter) {
+            focusedTime++;
           } else {
-            focusStart = null;
-            statusText.textContent = "Perdiste el enfoque. Vuelve a intentarlo.";
+            focusedTime = 0;
+          }
+
+          if (focusedTime >= 20) {
+            clearInterval(interval);
+            dot.style.backgroundColor = '#00ff7f';
+            dot.innerHTML = '✅';
+            alert('¡Reto completado! Puedes continuar con tu entrenamiento.');
           }
         }
-        requestAnimationFrame(checkFocus);
-      };
-      checkFocus();
-    };
-  }
+      }, 1000);
+    }
 
-  startCameraFocusTest();
-</script>
-</body>
+    function checkFocus(leftEye, rightEye) {
+      const avgY = (leftEye[1].y + rightEye[1].y) / 2;
+      const threshold = 5;
+      return Math.abs(leftEye[1].y - rightEye[1].y) < threshold && Math.abs(rightEye[4].y - avgY) < threshold;
+    }
+
+    startFaceTracking();
+  </script></body>
 </html>
