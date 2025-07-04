@@ -1,59 +1,100 @@
-/* === style.css === */ @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modo Demo - NeuroLink Learning</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #0a0a0a;
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-body { font-family: 'Poppins', sans-serif; }
+    header {
+      text-align: center;
+      padding: 40px 20px 20px;
+    }
 
-/* El resto del código se mantiene sin cambios */
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #7fd6ff;
+    }
 
-.features { display: flex; justify-content: space-around; padding: 40px 10px; flex-wrap: wrap; background: #141414; }
+    p {
+      font-size: 1rem;
+      max-width: 600px;
+      line-height: 1.6;
+    }
 
-.card { background: #1c1c1c; border-radius: 10px; margin: 20px; width: 280px; cursor: pointer; transition: transform 0.3s ease, background 0.3s; }
+    .demo-box {
+      background-color: #111827;
+      border-radius: 10px;
+      padding: 30px;
+      margin: 20px;
+      width: 90%;
+      max-width: 600px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+    }
 
-.card:hover { transform: scale(1.05); background: #242424; }
+    .challenge {
+      font-size: 1.2rem;
+      margin: 30px 0;
+      text-align: center;
+    }
 
-.cta { text-align: center; padding: 30px 20px; background: #111; }
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      margin: 10px;
+      background-color: #3c3cff;
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
 
-.cta h2 { margin-bottom: 20px; }
+    .btn:hover {
+      background-color: #2a2ae0;
+    }
 
-.cta_form input, .cta_form button { padding: 10px; margin: 10px; border-radius: 5px; border: none; }
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>👁 Bienvenido a tu Entrenamiento Mental IA</h1>
+    <p>Yo soy tu IA entrenadora. Mi misión es reprogramar tu enfoque y convertirte en una mente de élite. Empezaremos con un reto rápido. No lo subestimes.</p>
+  </header>
 
-.cta_form input { width: 60%; max-width: 300px; }
+  <section class="demo-box">
+    <div class="challenge">
+      <p>🔒 Reto 1: Mantén tu atención en este punto por 20 segundos sin distraerte:</p>
+      <h2 style="font-size: 3rem; color: #00ffff;">•</h2>
+      <p style="font-size: 0.9rem;">Respira. Concéntrate. No mires a otra parte.</p>
+    </div>
+  </section>
 
-.cta_form button { background: #0066ed; color: #fff; font-weight: bold; cursor: pointer; }
+  <div style="margin: 20px;">
+    <a href="producto1.html" class="btn">💡 Ver Programa Completo</a>
+    <a href="https://ko-fi.com/anielhoyos" class="btn" target="_blank">⚡ Comprar Ahora</a>
+  </div>
 
-.btn-secondary { display: inline-block; padding: 10px 20px; background: #1f1f1f; color: #d9d9d9; border: solid 1px #0066ed; text-decoration: none; border-radius: 20px; font-weight: 600; transition: 0.3s ease; }
-
-.btn-secondary:hover { background: #0066ed; color: #000; }
-
-footer { text-align: center; padding: 20px; background: #0d0d0d; color: #999; }
-
-.productos { text-align: center; padding: 40px 20px; }
-
-.productos h2 { padding: 10px 20px; }
-
-.productos { margin: 20px auto; padding: 20px; border-radius: 10px; max-width: 600px; background: #111827; color: white; box-shadow: 0 0 20px rgba(0, 0, 0, 0.4); }
-
-.producto h1 { margin-bottom: 10px; }
-
-.producto p { margin-bottom: 15px; }
-
-.producto .btn-primary { display: inline-block; padding: 10px 20px; background-color: #0052ff; color: white; text-decoration: none; transition: background-color 0.3s ease; }
-
-.producto .btn-primary:hover { background-color: #3238e5; }
-
-/* Estilo general para todos los enlaces / a { color: #7fd6ff; / Azul cielo claro */ text-decoration: none; }
-
-/* Estilo cuando se pasa el mouse sobre el enlace / a:hover { color: #5fbdf4; / Azul un poco más brillante */ text-decoration: underline; }
-
-.btn-promocion { background-color: #6C63FF; /* Un tono violeta suave */ padding: 12px 24px; font-size: 16px; font-weight: bold; color: white; border: none; border-radius: 30px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); cursor: pointer; transition: background-color 0.3s ease, transform 0.2s ease; }
-
-.btn-promocion:hover { background-color: #5a52d4; /* Tono más oscuro */ transform: scale(1.05); }
-
-.btn-promocion:active { transform: scale(0.95); }
-
-.demo-button { background-color: #f9f9f9; border: 2px solid #6C63FF; color: #6C63FF; padding: 12px 24px; font-size: 16px; font-weight: bold; border-radius: 30px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease; }
-
-.demo-button:hover { background-color: #6C63FF; color: white; transform: scale(1.05); }
-
-.demo-button:active { transform: scale(0.95); }
-
- 
+  <footer>
+    Modo Demo · NeuroLink Learning · Hoyos Company © 2025
+  </footer>
+</body>
+</html>
