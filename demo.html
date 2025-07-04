@@ -1,105 +1,103 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Demo NeuroLink</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Modo Demo | NeuroLink Learning</title>
   <script defer src="https://cdn.jsdelivr.net/npm/face-api.js"></script>
-  <link rel="stylesheet" href="estilo.css">
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      background: #f7f7f7;
+      color: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       text-align: center;
-      padding: 20px;
+    }
+    h1 {
+      color: #00bfff;
+      margin-top: 30px;
+    }
+    .reto {
+      background: #000;
+      color: #fff;
+      padding: 25px;
+      margin-top: 30px;
+      border-radius: 12px;
+      max-width: 320px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+    }
+    .punto {
+      margin: 16px auto;
+      width: 8px;
+      height: 8px;
+      background: cyan;
+      border-radius: 50%;
     }
     video {
       display: none;
-    }
-    canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-    .reto-box {
-      margin: 30px auto;
-      padding: 30px;
-      background-color: #111;
-      color: #fff;
-      border-radius: 10px;
-      width: 90%;
-      max-width: 400px;
-      position: relative;
-    }
-    .punto {
-      width: 10px;
-      height: 10px;
-      background-color: cyan;
-      border-radius: 50%;
-      margin: 20px auto;
-    }
-    .btn-siguiente {
-      display: none;
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-weight: bold;
-      color: white;
-      background-color: #0056ff;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
     }
   </style>
 </head>
 <body>
 
-  <h2>👁️ <span style="color: #3AC6FF;">Bienvenido a tu Entrenamiento Mental IA</span></h2>
-  <p>Yo soy tu IA entrenadora.<br>Mi misión es reprogramar tu enfoque y convertirte en una mente de élite.<br>Empezaremos con un reto rápido. No lo subestimes.</p>
+  <h1>👁️ Bienvenido a tu Entrenamiento Mental IA</h1>
+  <p>Yo soy tu IA entrenadora.<br>
+     Mi misión es reprogramar tu enfoque y convertirte en una mente de élite.<br>
+     Empezaremos con un reto rápido. No lo subestimes.</p>
 
-  <div class="reto-box">
-    <p>🔒 <strong>Reto 1:</strong> Mantén tu atención en este punto por <strong>20 segundos</strong> sin distraerte:</p>
+  <div class="reto">
+    <strong>🔒 Reto 1:</strong> Mantén tu atención en este punto por <strong>20 segundos</strong> sin distraerte:<br>
     <div class="punto"></div>
     <p>Respira. Concéntrate. No mires a otra parte.</p>
-    <button class="btn-siguiente" onclick="alert('¡Nivel desbloqueado!')">▶ Ver siguiente nivel</button>
   </div>
 
-  <video id="video" width="320" height="240" autoplay muted></video>
+  <video id="video" autoplay muted></video>
 
   <script>
-    const video = document.getElementById('video');
-    const btnSiguiente = document.querySelector('.btn-siguiente');
+    const MODEL_URL = '/modelos_faceapi';
 
-    Promise.all([
-      faceapi.nets.tinyFaceDetector.loadFromUri('./modelos_faceapi/tiny_face_detector'),
-      faceapi.nets.faceLandmark68Net.loadFromUri('./modelos_faceapi/face_landmark_68')
-    ]).then(startVideo);
-
-    function startVideo() {
-      navigator.mediaDevices.getUserMedia({ video: true })
-        .then(stream => video.srcObject = stream)
-        .catch(err => console.error("Error al activar la cámara", err));
+    async function cargarModelos() {
+      await faceapi.nets.tinyFaceDetector.loadFromUri(`${MODEL_URL}/tiny_face_detector`);
+      await faceapi.nets.faceLandmark68Net.loadFromUri(`${MODEL_URL}/face_landmark_68`);
+      iniciarCamara();
     }
 
-    let tiempoEnfocado = 0;
-    let tiempoRequerido = 20; // segundos
+    async function iniciarCamara() {
+      const video = document.getElementById('video');
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: {} });
+        video.srcObject = stream;
+        monitorearAtencion(video);
+      } catch (err) {
+        alert("No se pudo acceder a la cámara: " + err);
+      }
+    }
 
-    video.addEventListener('play', () => {
-      const interval = setInterval(async () => {
-        const result = await faceapi.detectSingleFace(video, new faceapi.TinyFaceDetectorOptions());
-        if (result) {
-          tiempoEnfocado++;
-          console.log(`Concentrado: ${tiempoEnfocado}s`);
+    async function monitorearAtencion(video) {
+      let segundosEnFoco = 0;
+      const intervalo = setInterval(async () => {
+        const detecciones = await faceapi.detectSingleFace(video, new faceapi.TinyFaceDetectorOptions())
+          .withFaceLandmarks();
+
+        if (detecciones && detecciones.landmarks) {
+          segundosEnFoco++;
+          console.log("Enfocado: ", segundosEnFoco, "s");
+
+          if (segundosEnFoco >= 20) {
+            clearInterval(intervalo);
+            alert("✅ ¡Bien hecho! Has superado el primer reto mental.");
+          }
         } else {
-          tiempoEnfocado = 0;
-          console.log("No se detecta rostro");
-        }
-
-        if (tiempoEnfocado >= tiempoRequerido) {
-          clearInterval(interval);
-          btnSiguiente.style.display = 'inline-block';
+          segundosEnFoco = 0;
         }
       }, 1000);
-    });
+    }
+
+    cargarModelos();
   </script>
 </body>
 </html>
