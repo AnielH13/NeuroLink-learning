@@ -1,0 +1,114 @@
+<!DOCTYPE html><html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modo Demo | NeuroLink Learning</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: radial-gradient(#0e0e0e, #000000);
+      color: #e3e3e3;
+      text-align: center;
+    }
+    .container {
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1 {
+      font-size: 2em;
+      color: #00ffc8;
+    }
+    .ai-message {
+      background-color: #1a1a1a;
+      border-left: 4px solid #00ffc8;
+      padding: 20px;
+      margin: 30px 0;
+      border-radius: 10px;
+    }
+    .btn {
+      background-color: #00ffc8;
+      border: none;
+      color: #000;
+      padding: 15px 30px;
+      font-size: 1em;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 30px;
+      transition: background 0.3s;
+      margin: 20px 10px;
+    }
+    .btn:hover {
+      background-color: #00bfa1;
+    }
+    .test-section {
+      margin-top: 40px;
+    }
+    .options button {
+      margin: 10px;
+      padding: 15px 20px;
+      background: #191919;
+      border: 2px solid #00ffc8;
+      color: #00ffc8;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+    .options button:hover {
+      background: #00ffc8;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>MENTOR IA — MODO DEMO</h1>
+    <div class="ai-message">
+      <p>Bienvenido, mente ambiciosa.<br><br>
+      Soy tu mentor IA. A partir de ahora, tu aprendizaje no será normal.<br>
+      Estás a punto de entrenar tu enfoque con un reto que solo el 30% logra completar sin errores.<br><br>
+      ¿Estás listo para activarte?</p>
+    </div><div class="test-section">
+  <h2>🔍 Nivel 1: Enfoque en palabras clave</h2>
+  <p>Selecciona las 3 palabras que reflejan alto rendimiento mental:</p>
+  <div class="options">
+    <button onclick="checkAnswer(this)">Procrastinar</button>
+    <button onclick="checkAnswer(this)">Disciplina</button>
+    <button onclick="checkAnswer(this)">Concentración</button>
+    <button onclick="checkAnswer(this)">Series</button>
+    <button onclick="checkAnswer(this)">Mentalidad</button>
+    <button onclick="checkAnswer(this)">Dudas</button>
+  </div>
+</div>
+
+<div class="ai-message" id="result" style="display:none;"></div>
+
+<div id="actions" style="display:none;">
+  <a href="producto1.html"><button class="btn">Quiero desbloquear más niveles</button></a>
+  <a href="https://ko-fi.com/anielhoyos"><button class="btn">Acceder al paquete completo</button></a>
+</div>
+
+  </div>  <script>
+    let correctWords = ["Disciplina", "Concentración", "Mentalidad"];
+    let selected = [];
+
+    function checkAnswer(button) {
+      if (selected.includes(button.innerText)) return;
+      selected.push(button.innerText);
+      button.style.backgroundColor = '#00ffc8';
+      button.style.color = '#000';
+
+      if (selected.length === 3) {
+        document.getElementById("result").style.display = 'block';
+        if (correctWords.every(word => selected.includes(word))) {
+          document.getElementById("result").innerHTML = '<p>Impresionante. Has demostrado un alto nivel de selección cognitiva. Esta solo fue la primera prueba...</p>';
+        } else {
+          document.getElementById("result").innerHTML = '<p>Has fallado. Pero incluso el fallo es parte del entrenamiento. Vuelve a intentarlo o desbloquea los niveles avanzados.</p>';
+        }
+        document.getElementById("actions").style.display = 'block';
+      }
+    }
+  </script></body>
+</html>
