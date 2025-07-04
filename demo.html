@@ -7,6 +7,54 @@
   <script defer src="https://unpkg.com/face-api.js"></script>
 </head>
 <body>
+  <h2>🎯 Reto: Mantén tu concentración</h2>
+<video id="videoInput" autoplay muted playsinline width="320" height="240" style="border-radius: 8px;"></video>
+<p id="status">Cargando modelos...</p>
+
+<script defer src="https://cdn.jsdelivr.net/npm/face-api.js"></script>
+<script>
+  const video = document.getElementById('videoInput');
+  const statusText = document.getElementById('status');
+
+  // Cargar modelos
+  Promise.all([
+    faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
+    faceapi.nets.faceLandmark68TinyNet.loadFromUri('/models')
+  ]).then(startVideo);
+
+  function startVideo() {
+    navigator.mediaDevices.getUserMedia({ video: {} })
+      .then(stream => {
+        video.srcObject = stream;
+        statusText.innerText = "Detectando rostro...";
+      })
+      .catch(err => {
+        statusText.innerText = "❌ Error al acceder a la cámara.";
+        console.error(err);
+      });
+  }
+
+  video.addEventListener('play', () => {
+    const canvas = faceapi.createCanvasFromMedia(video);
+    document.body.append(canvas);
+    const displaySize = { width: video.width, height: video.height };
+    faceapi.matchDimensions(canvas, displaySize);
+
+    setInterval(async () => {
+      const detections = await faceapi.detectSingleFace(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks(true);
+      canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+      if (detections) {
+        statusText.innerText = "✅ Rostro detectado. Mantén la mirada.";
+        const resized = faceapi.resizeResults(detections, displaySize);
+        faceapi.draw.drawDetections(canvas, resized);
+        faceapi.draw.drawFaceLandmarks(canvas, resized);
+        // Aquí luego analizaremos la dirección de los ojos
+      } else {
+        statusText.innerText = "👁‍🗨 Rostro no detectado. Concéntrate.";
+      }
+    }, 500);
+  });
+</script>
   <main style="text-align: center; padding: 40px 20px;">
     <h1>👁️ <span style="color: #61d3ff">Bienvenido a tu Entrenamiento Mental IA</span></h1>
     <p style="font-size: 20px; margin: 20px auto; max-width: 600px;">
