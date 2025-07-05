@@ -1,64 +1,87 @@
-<!DOCTYPE html><html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>NeuroLink Learning</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .floating-gift {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #fff;
+      color: #000;
+      border-radius: 50%;
+      padding: 10px 12px;
+      font-size: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      text-decoration: none;
+      z-index: 999;
+    }
+  </style>
 </head>
 <body>
-  <a href="demo.html" class="btn-secondary">🚀 Iniciar Demo</a>
-  <a href="#promocion" class="btn-secondary">🎁 Reclamar Promoción</a>
+  <!-- Botón flotante de promoción -->
+  <a href="#promocion" class="floating-gift" title="Reclamar promoción">🎁</a>
+
   <header class="header">
     <a href="nosotros.html" class="btn-secondary">🔍 Conócenos</a>
     <h1>NeuroLink Learning</h1>
     <p>La educación que se adapta a tu mente.</p>
     <a href="#formulario" class="btn-primary">Accede primero</a>
-  </header>  <section class="features">
-    <div class="card" onclick="location.href='adaptativa.html'">
+  </header>
+
+  <section class="features">
+    <div class="card">
       <h3>IA + Neurociencia</h3>
       <p>Detectamos tu atención y adaptamos el ritmo en tiempo real.</p>
     </div>
-    <div class="card" onclick="location.href='resultados.html'">
+    <div class="card">
       <h3>Resultados 10×</h3>
       <p>Aprende más rápido, con menos frustración y mayor retención.</p>
     </div>
-    <div class="card" onclick="location.href='disponible.html'">
+    <div class="card">
       <h3>Disponible 24/7</h3>
       <p>Tu entrenador mental personal, siempre en tu bolsillo.</p>
     </div>
-  </section>  <section class="cta" id="formulario">
+  </section>
+
+  <section class="cta" id="formulario">
     <h2>Interfaz de Contacto</h2>
     <form action="https://formspree.io/f/xgvyreal" method="POST" onsubmit="setTimeout(function(){ window.location.href='gracias.html'; }, 300);">
-  <input type="email" name="email" placeholder="Tu correo..." required />
-  <button type="submit" class="btn-primary">Solicitar acceso</button>
-</a>
-</form>
+      <input type="email" name="email" placeholder="Tu correo..." required />
+      <button type="submit" class="btn-primary">Solicitar acceso</button>
+    </form>
     <br/>
     <a href="https://wa.me/50766390754" class="btn-secondary">💬 WhatsApp</a>
     <a href="https://www.instagram.com/neurolinklearning?igsh=" class="btn-secondary" target="_blank">📸 Instagram</a>
-    <a href="producto.html" class="btn-secondary">🛒 Comprar ahora</a> 
+    <a href="producto.html" class="btn-secondary">🛒 Comprar ahora</a>
+
     <section class="productos">
-  <h2>Explora nuestros programas destacados</h2>
+      <h2>Explora nuestros programas destacados</h2>
 
-  <div class="producto">
-    <h3>🧠 Entrenamiento Mental Adaptativo IA</h3>
-    <p>Desbloquea tu potencial cognitivo con IA y neurotecnología.</p>
-    <a href="producto1.html" class="btn-primary">Ver producto</a>
-  </div>
+      <div class="producto">
+        <h3>🧠 Entrenamiento Mental Adaptativo IA</h3>
+        <p>Desbloquea tu potencial cognitivo con IA y neurotecnología.</p>
+        <a href="producto1.html" class="btn-primary">Ver producto</a>
+      </div>
 
-  <div class="producto">
-    <h3>🎯 Mentor Virtual Personal</h3>
-    <p>Tu IA coach disponible 24/7 para ayudarte a aprender y crecer.</p>
-    <a href="producto2.html" class="btn-primary">Ver producto</a>
-  </div>
+      <div class="producto">
+        <h3>🎯 Mentor Virtual Personal</h3>
+        <p>Tu IA coach disponible 24/7 para ayudarte a aprender y crecer.</p>
+        <a href="producto2.html" class="btn-primary">Ver producto</a>
+      </div>
 
-  <div class="producto">
-    <h3>📜 Certificación en Aprendizaje Autónomo con IA</h3>
-    <p>Conviértete en un autodidacta con ayuda de la inteligencia artificial.</p>
-    <a href="producto3.html" class="btn-primary">Ver producto</a>
-  </div>
-</section>
-  </section>  <footer>
+      <div class="producto">
+        <h3>📜 Certificación en Aprendizaje Autónomo con IA</h3>
+        <p>Conviértete en un autodidacta con ayuda de la inteligencia artificial.</p>
+        <a href="producto3.html" class="btn-primary">Ver producto</a>
+      </div>
+    </section>
+  </section>
+
+  <footer>
     <p>&copy; 2025 NeuroLink Learning &mdash; Powered by Artificial Intelligence</p>
     <p>Contacto: <a href="mailto:NeuroLinklearning@gmail.com">NeuroLinklearning@gmail.com</a></p>
   </footer>
