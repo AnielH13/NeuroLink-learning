@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>NeuroLink Learning</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#101010" />
+  <link rel="icon" href="app-icon.png" type="image/png" />
   <style>
     .floating-gift {
       position: fixed;
@@ -21,9 +24,10 @@
     }
   </style>
 </head>
+
 <body>
   <!-- Botón flotante de promoción -->
-  <a href="productos.html" class="floating-gift" title="Reclamar promoción">🎁</a>
+  <a href="#promocion" class="floating-gift" title="Reclamar promoción">🎁</a>
 
   <header class="header">
     <a href="nosotros.html" class="btn-secondary">🔍 Conócenos</a>
@@ -85,5 +89,14 @@
     <p>&copy; 2025 NeuroLink Learning &mdash; Powered by Artificial Intelligence</p>
     <p>Contacto: <a href="mailto:NeuroLinklearning@gmail.com">NeuroLinklearning@gmail.com</a></p>
   </footer>
+
+  <!-- Registro del Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('✅ Service Worker registrado'))
+        .catch(err => console.error('❌ Error al registrar SW:', err));
+    }
+  </script>
 </body>
 </html>
