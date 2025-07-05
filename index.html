@@ -2,32 +2,22 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NeuroLink Learning</title>
-  <link rel="stylesheet" href="style.css" />
+
+  <!-- Ícono de la app -->
+  <link rel="icon" href="app-icon.png" type="image/png" />
+
+  <!-- PWA Manifest -->
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#101010" />
-  <link rel="icon" href="app-icon.png" type="image/png" />
-  <style>
-    .floating-gift {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #fff;
-      color: #000;
-      border-radius: 50%;
-      padding: 10px 12px;
-      font-size: 20px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      text-decoration: none;
-      z-index: 999;
-    }
-  </style>
-</head>
 
+  <!-- Estilos -->
+  <link rel="stylesheet" href="style.css" />
+</head>
 <body>
-  <!-- Botón flotante de promoción -->
-  <a href="#promocion" class="floating-gift" title="Reclamar promoción">🎁</a>
+  <!-- Botón flotante de Promoción -->
+  <a href="#promocion" class="btn-floating" title="Reclamar promoción">🎁</a>
 
   <header class="header">
     <a href="nosotros.html" class="btn-secondary">🔍 Conócenos</a>
@@ -57,26 +47,23 @@
       <input type="email" name="email" placeholder="Tu correo..." required />
       <button type="submit" class="btn-primary">Solicitar acceso</button>
     </form>
-    <br/>
+    <br />
     <a href="https://wa.me/50766390754" class="btn-secondary">💬 WhatsApp</a>
     <a href="https://www.instagram.com/neurolinklearning?igsh=" class="btn-secondary" target="_blank">📸 Instagram</a>
     <a href="producto.html" class="btn-secondary">🛒 Comprar ahora</a>
 
     <section class="productos">
       <h2>Explora nuestros programas destacados</h2>
-
       <div class="producto">
         <h3>🧠 Entrenamiento Mental Adaptativo IA</h3>
         <p>Desbloquea tu potencial cognitivo con IA y neurotecnología.</p>
         <a href="producto1.html" class="btn-primary">Ver producto</a>
       </div>
-
       <div class="producto">
         <h3>🎯 Mentor Virtual Personal</h3>
         <p>Tu IA coach disponible 24/7 para ayudarte a aprender y crecer.</p>
         <a href="producto2.html" class="btn-primary">Ver producto</a>
       </div>
-
       <div class="producto">
         <h3>📜 Certificación en Aprendizaje Autónomo con IA</h3>
         <p>Conviértete en un autodidacta con ayuda de la inteligencia artificial.</p>
@@ -93,9 +80,11 @@
   <!-- Registro del Service Worker -->
   <script>
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js')
-        .then(() => console.log('✅ Service Worker registrado'))
-        .catch(err => console.error('❌ Error al registrar SW:', err));
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service.worker.js')
+          .then(reg => console.log('✅ Service Worker registrado:', reg.scope))
+          .catch(err => console.log('❌ Error al registrar Service Worker:', err));
+      });
     }
   </script>
 </body>
