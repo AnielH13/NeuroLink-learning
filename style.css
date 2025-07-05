@@ -1,214 +1,171 @@
-body {
+/* Reset básico */
+* {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: #0c0c0c;
-  color: #f1f1f1;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #101010;
+  color: #ffffff;
+  line-height: 1.6;
+  padding-bottom: 100px;
+}
+
+/* Encabezado */
 .header {
   text-align: center;
-  padding: 50px 20px;
-  background: linear-gradient(to right, #111, #0f2027);
+  padding: 40px 20px 20px;
 }
 
 .header h1 {
-  font-size: 2.8em;
-  margin-bottom: 10px;
+  font-size: 2.5rem;
+  color: #ffffff;
 }
 
 .header p {
-  font-size: 1.2em;
-  color: #ccc;
+  font-size: 1.1rem;
+  color: #aaa;
+  margin-top: 10px;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Botones */
+.btn-primary,
+.btn-secondary {
+  display: inline-block;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: 0.3s;
+  margin: 10px;
 }
 
 .btn-primary {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 12px 24px;
-  background: #00e6e6;
-  color: #000;
-  text-decoration: none;
-  border-radius: 30px;
-  font-weight: bold;
-  transition: 0.3s ease;
+  background-color: #007bff;
+  color: white;
+  border: none;
 }
 
 .btn-primary:hover {
-  background: #00bfbf;
+  background-color: #0056b3;
 }
 
+.btn-secondary {
+  background-color: #333;
+  color: white;
+  border: 1px solid #555;
+}
+
+.btn-secondary:hover {
+  background-color: #555;
+}
+
+/* Botón flotante 🎁 */
+.btn-floating {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 24px;
+  background-color: #007bff;
+  color: white;
+  padding: 14px 18px;
+  border-radius: 50%;
+  z-index: 1000;
+  box-shadow: 0 0 12px rgba(0, 123, 255, 0.5);
+}
+
+/* Sección de tarjetas */
 .features {
   display: flex;
   justify-content: space-around;
-  padding: 40px 10px;
   flex-wrap: wrap;
-  background: #141414;
+  padding: 40px 20px;
+  background-color: #181818;
 }
 
 .card {
-  background: #1c1c1c;
+  background-color: #222;
+  border-radius: 12px;
   padding: 20px;
-  border-radius: 10px;
-  width: 280px;
-  margin: 10px;
-  cursor: pointer;
-  transition: transform 0.3s ease, background 0.3s;
-}
-
-.card:hover {
-  transform: scale(1.05);
-  background: #242424;
-}
-
-.cta {
-  text-align: center;
-  padding: 50px 20px;
-  background: #111;
-}
-
-.cta h2 {
-  margin-bottom: 20px;
-}
-
-.cta form input,
-.cta form button {
-  padding: 10px;
-  margin: 10px;
-  border-radius: 8px;
-  border: none;
-}
-
-.cta form input {
-  width: 60%;
+  margin: 15px;
+  flex: 1 1 250px;
   max-width: 300px;
-}
-
-.cta form button {
-  background: #00e6e6;
-  color: #000;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.btn-secondary {
-  display: inline-block;
-  margin: 10px;
-  padding: 12px 20px;
-  background: #1f1f1f;
-  border: 1px solid #00e6e6;
-  color: #00e6e6;
-  border-radius: 20px;
-  text-decoration: none;
-  transition: 0.3s ease;
-}
-
-.btn-secondary:hover {
-  background: #00e6e6;
-  color: #000;
-}
-
-footer {
   text-align: center;
-  padding: 20px;
-  background: #0a0a0a;
-  color: #555;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.03);
 }
-.productos {
-  text-align: center;
+
+.card h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.card p {
+  color: #ccc;
+  font-size: 0.95rem;
+}
+
+/* CTA y formulario */
+.cta {
   padding: 40px 20px;
+  text-align: center;
+  background-color: #111;
+}
+
+.cta input[type="email"] {
+  padding: 12px;
+  width: 80%;
+  max-width: 400px;
+  margin-bottom: 12px;
+  border: none;
+  border-radius: 8px;
+}
+
+.cta button {
+  margin-top: 10px;
+}
+
+/* Productos */
+.productos {
+  padding: 30px 20px;
 }
 
 .producto {
-  margin: 20px auto;
+  background-color: #1c1c1c;
+  border-radius: 10px;
   padding: 20px;
-  border-radius: 12px;
+  margin: 15px auto;
   max-width: 600px;
-  background-color: #111827;
-  color: white;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.03);
 }
 
 .producto h3 {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+  color: #fff;
 }
 
 .producto p {
-  margin-bottom: 15px;
+  color: #bbb;
+  font-size: 0.95rem;
 }
 
-.producto .btn-primary {
-  display: inline-block;
-  padding: 10px 20px;
-  border-radius: 6px;
-  background-color: #3b82f6;
-  color: white;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-.producto .btn-primary:hover {
-  background-color: #2563eb;
-}
-/* Estilo general para todos los enlaces */
-a {
-  color: #7dd3fc; /* Azul cielo claro */
-  text-decoration: none;
+/* Footer */
+footer {
+  text-align: center;
+  padding: 30px 20px;
+  font-size: 0.9rem;
+  color: #aaa;
+  background-color: #000;
+  border-top: 1px solid #222;
 }
 
-/* Estilo cuando se pasa el mouse sobre el enlace */
-a:hover {
-  color: #38bdf8; /* Azul un poco más brillante */
-  text-decoration: underline;
+footer a {
+  color: #00aaff;
 }
-.btn-promocion {
-  background-color: #6c63ff;  /* tono violeta suave */
-  color: #fff;
-  padding: 12px 24px;
-  font-size: 16px;
-  font-weight: 600;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(108, 99, 255, 0.3);
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  text-decoration: none;
-  display: inline-block;
-}
-
-.btn-promocion:hover {
-  background-color: #5848e5;
-  transform: translateY(-2px);
-}
-<style>
-  .boton-app {
-    display: inline-block;
-    padding: 14px 28px;
-    background: linear-gradient(135deg, #3f00ff, #8e2de2);
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 10px;
-    text-decoration: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-  }
-
-  .boton-app:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-  }
-</style>
-.btn-secondary {
-  background-color: #3c3cff;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-weight: bold;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-
-.btn-secondary:hover {
-  background-color: #2a2ae0;
-}
-font-family: 'Poppins', sans-serif;
